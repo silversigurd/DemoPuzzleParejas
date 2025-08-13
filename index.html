@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Puzzle de Amor para Mi Esposa ❤️</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Fondo de corazones flotantes -->
+    <div class="hearts-bg">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <div class="container">
+        <!-- Pantalla de bienvenida -->
+        <div id="welcome-screen" class="screen active">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 text-center">
+                    <div class="welcome-card">
+                        <h1 class="mb-4">💕 Mi Amor 💕</h1>
+                        <p class="mb-4">Preparé algo especial para ti... pero primero tenés que resolver este pequeño
+                            puzzle de nuestro amor</p>
+                        <div class="flower-decoration mb-4">🌹 🌸 🌺 🌻 🌷</div>
+                        <button class="btn btn-love" onclick="startPuzzle()">
+                            Comenzar el Puzzle de Amor ❤️
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla del puzzle -->
+        <div id="puzzle-screen" class="screen">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10">
+                    <div class="puzzle-card">
+                        <div class="progress-section mb-4">
+                            <h2 class="text-center mb-3">Puzzle de Nuestro Amor</h2>
+                            <div class="progress" style="height: 10px;">
+                                <div id="progress-bar" class="progress-bar bg-love" role="progressbar"
+                                    style="width: 25%"></div>
+                            </div>
+                            <p class="text-center mt-2">Pregunta <span id="question-number">1</span> de 4</p>
+                        </div>
+
+                        <!-- Pregunta 1 -->
+                        <div id="question-1" class="question active">
+                            <div class="question-content">
+                                <div class="question-icon">🎬</div>
+                                <h3>¿Cuál fue nuestra primera película juntos?</h3>
+                                <p class="hint">Pista: Una película clásica romántica... 🎬</p>
+                                <input type="text" class="form-control answer-input" id="answer-1"
+                                    placeholder="Escribe tu respuesta aquí...">
+                                <div id="feedback-1" class="feedback"></div>
+                                <button class="btn btn-love mt-3" onclick="checkAnswer(1)">Verificar Respuesta
+                                    💕</button>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 2 -->
+                        <div id="question-2" class="question">
+                            <div class="question-content">
+                                <div class="question-icon">🍰</div>
+                                <h3>¿Cuál es mi postre favorito?</h3>
+                                <p class="hint">Pista: Es cremoso y tiene café... ☕</p>
+                                <input type="text" class="form-control answer-input" id="answer-2"
+                                    placeholder="Escribe tu respuesta aquí...">
+                                <div id="feedback-2" class="feedback"></div>
+                                <button class="btn btn-love mt-3" onclick="checkAnswer(2)">Verificar Respuesta
+                                    💕</button>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 3 -->
+                        <div id="question-3" class="question">
+                            <div class="question-content">
+                                <div class="question-icon">🤔</div>
+                                <h3>¿Cuando fue nuestro primer beso?</h3>
+                                <p class="hint">Ese momento tan atesorado... 💎</p>
+                                <input type="text" class="form-control answer-input" id="answer-3"
+                                    placeholder="Escribe tu respuesta aquí...">
+                                <div id="feedback-3" class="feedback"></div>
+                                <button class="btn btn-love mt-3" onclick="checkAnswer(3)">Verificar Respuesta
+                                    💕</button>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 4 -->
+                        <div id="question-4" class="question">
+                            <div class="question-content">
+                                <div class="question-icon">🐱</div>
+                                <h3>¿Cómo se llaman nuestras mascotas?</h3>
+                                <p class="hint">Nuestros pequeños compañeros... 🐾</p>
+                                <input type="text" class="form-control answer-input" id="answer-4"
+                                    placeholder="Escribe sus nombres aquí...">
+                                <div id="feedback-4" class="feedback"></div>
+                                <button class="btn btn-love mt-3" onclick="checkAnswer(4)">Verificar Respuesta
+                                    💕</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de felicitaciones -->
+        <div id="congratulations-screen" class="screen">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 text-center">
+                    <div class="congrats-card">
+                        <div class="celebration-animation mb-4">
+                            <div class="sparkle">✨</div>
+                            <div class="sparkle">⭐</div>
+                            <div class="sparkle">💫</div>
+                            <div class="sparkle">✨</div>
+                        </div>
+
+                        <h1 class="congrats-title mb-4">¡Acertaste todas las preguntas mi amor!</h1>
+                        <h2 class="prize-text mb-4">🎁 Aquí está tu premio 🎁</h2>
+
+                        <div class="video-container mt-4">
+                            <video id="love-video" controls width="100%"
+                                style="max-width: 800px; border-radius: 15px; box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);">
+                                <source src="videodemo.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+
+                        <div class="final-message mt-4">
+                            <p class="lead">Con todo mi amor ❤️</p>
+                            <div class="heart-rain">💕 💖 💗 💝 💘</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

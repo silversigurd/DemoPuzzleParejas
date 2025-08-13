@@ -1,0 +1,560 @@
+/* Importar fuentes bonitas */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+/* Variables CSS para colores cálidos */
+:root {
+    --love-pink: #ff69b4;
+    --warm-pink: #ffb6c1;
+    --soft-rose: #ffc0cb;
+    --cream: #fff8dc;
+    --gold: #ffd700;
+    --coral: #ff7f7f;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fondo de corazones flotantes */
+.hearts-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    color: rgba(255, 182, 193, 0.3);
+    font-size: 20px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.heart:before {
+    content: "❤️";
+}
+
+.heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+.heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+.heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+.heart:nth-child(4) { left: 70%; animation-delay: 3s; }
+.heart:nth-child(5) { left: 80%; animation-delay: 4s; }
+.heart:nth-child(6) { left: 90%; animation-delay: 5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10%, 90% { opacity: 1; }
+    50% { transform: translateY(-10px) rotate(180deg); }
+}
+
+/* Contenedor principal */
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Pantallas del juego */
+.screen {
+    display: none;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tarjeta de bienvenida */
+.welcome-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 240, 245, 0.9));
+    padding: 50px 35px;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(255, 105, 180, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 182, 193, 0.3);
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.welcome-card h1 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--love-pink);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: heartbeat 2s ease-in-out infinite;
+    font-size: 3rem;
+    line-height: 1.1;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.flower-decoration {
+    font-size: 2rem;
+    animation: sway 3s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* Botón de amor */
+.btn-love {
+    background: linear-gradient(135deg, var(--love-pink), var(--coral));
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+    transition: all 0.3s ease;
+    text-transform: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-love:hover {
+    background: linear-gradient(135deg, var(--coral), var(--love-pink));
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 105, 180, 0.6);
+    color: white;
+}
+
+/* Tarjeta del puzzle */
+.puzzle-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 220, 0.95));
+    padding: 35px 30px;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(255, 105, 180, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+/* Barra de progreso */
+.bg-love {
+    background: linear-gradient(90deg, var(--love-pink), var(--gold)) !important;
+}
+
+.progress {
+    background-color: rgba(255, 182, 193, 0.3);
+    border-radius: 10px;
+}
+
+/* Preguntas */
+.question {
+    display: none;
+}
+
+.question.active {
+    display: block;
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.question-content {
+    text-align: center;
+    padding: 20px 15px;
+}
+
+.question-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.question-content h3 {
+    color: var(--love-pink);
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    padding: 0 10px;
+}
+
+.hint {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.answer-input {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    border: 2px solid var(--warm-pink);
+    border-radius: 25px;
+    font-size: 1.1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.answer-input:focus {
+    border-color: var(--love-pink);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+    outline: none;
+}
+
+/* Feedback */
+.feedback {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-weight: 500;
+    min-height: 20px;
+}
+
+.feedback.correct {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    color: #155724;
+    border: 2px solid #c3e6cb;
+}
+
+.feedback.incorrect {
+    background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+}
+
+.feedback.special {
+    background: linear-gradient(135deg, var(--cream), var(--soft-rose));
+    color: var(--love-pink);
+    border: 2px solid var(--warm-pink);
+    font-weight: 600;
+}
+
+/* Pantalla de felicitaciones */
+.congrats-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.95));
+    padding: 40px 25px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
+    backdrop-filter: blur(15px);
+    border: 3px solid rgba(255, 215, 0, 0.4);
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.celebration-animation {
+    position: relative;
+    height: 80px;
+    margin-bottom: 30px;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 2rem;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) { left: 20%; animation-delay: 0s; }
+.sparkle:nth-child(2) { left: 40%; animation-delay: 0.5s; }
+.sparkle:nth-child(3) { left: 60%; animation-delay: 1s; }
+.sparkle:nth-child(4) { left: 80%; animation-delay: 1.5s; }
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+}
+
+.congrats-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: var(--love-pink);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
+    50% { text-shadow: 0 0 20px rgba(255, 105, 180, 0.6); }
+}
+
+.prize-text {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 2rem;
+    animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { color: var(--love-pink); }
+    25% { color: var(--gold); }
+    50% { color: var(--coral); }
+    75% { color: var(--warm-pink); }
+    100% { color: var(--love-pink); }
+}
+
+.video-container {
+    position: relative;
+    margin: 30px auto;
+}
+
+.video-container video {
+    border: 5px solid var(--gold);
+    animation: videoGlow 3s ease-in-out infinite;
+}
+
+@keyframes videoGlow {
+    0%, 100% { box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4); }
+    50% { box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6); }
+}
+
+.final-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--love-pink);
+}
+
+.heart-rain {
+    font-size: 2rem;
+    animation: heartRain 4s ease-in-out infinite;
+}
+
+@keyframes heartRain {
+    0%, 100% { transform: translateY(0px); }
+    25% { transform: translateY(-10px); }
+    50% { transform: translateY(-5px); }
+    75% { transform: translateY(-15px); }
+}
+
+/* Responsividad mejorada */
+@media (max-width: 768px) {
+    body {
+        padding: 10px 0;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .welcome-card {
+        margin: 10px;
+        padding: 40px 25px;
+    }
+    
+    .welcome-card h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .welcome-card p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    .flower-decoration {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+    
+    .puzzle-card {
+        margin: 10px;
+        padding: 25px 20px;
+    }
+    
+    .puzzle-card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .question-content {
+        padding: 15px 10px;
+    }
+    
+    .question-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .question-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+    
+    .hint {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    .answer-input {
+        max-width: calc(100vw - 80px);
+        padding: 10px 15px;
+        font-size: 16px; /* Evita zoom en iOS */
+        margin-bottom: 10px;
+    }
+    
+    .btn-love {
+        padding: 12px 25px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .feedback {
+        margin-top: 10px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .congrats-card {
+        margin: 10px;
+        padding: 30px 20px;
+    }
+    
+    .congrats-title {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+    
+    .prize-text {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .celebration-animation {
+        height: 60px;
+        margin-bottom: 20px;
+    }
+    
+    .sparkle {
+        font-size: 1.5rem;
+    }
+    
+    .final-message {
+        font-size: 1.2rem;
+        margin-top: 20px;
+    }
+    
+    .heart-rain {
+        font-size: 1.5rem;
+    }
+    
+    .video-container {
+        margin: 20px auto;
+    }
+    
+    .video-container video {
+        border-width: 3px;
+    }
+}
+
+/* Específico para iPhone y pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .welcome-card {
+        padding: 30px 20px;
+    }
+    
+    .welcome-card h1 {
+        font-size: 2.2rem;
+    }
+    
+    .puzzle-card {
+        padding: 20px 15px;
+    }
+    
+    .question-content {
+        padding: 10px 5px;
+    }
+    
+    .question-icon {
+        font-size: 2.2rem;
+    }
+    
+    .question-content h3 {
+        font-size: 1.2rem;
+        padding: 0 5px;
+    }
+    
+    .hint {
+        font-size: 0.85rem;
+        padding: 0 10px;
+    }
+    
+    .answer-input {
+        padding: 12px 15px;
+        font-size: 16px; /* Evita zoom en iOS */
+        max-width: calc(100vw - 60px);
+    }
+    
+    .btn-love {
+        padding: 12px 20px;
+        font-size: 1rem;
+        margin-top: 15px;
+    }
+    
+    .congrats-title {
+        font-size: 1.8rem;
+        padding: 0 10px;
+    }
+    
+    .prize-text {
+        font-size: 1.3rem;
+    }
+    
+    .progress-section p {
+        font-size: 0.9rem;
+    }
+    
+    .progress {
+        height: 8px;
+    }
+    
+    .video-container video {
+        max-width: calc(100vw - 40px);
+        width: 100%;
+    }
+    
+    .final-message p {
+        font-size: 1.1rem;
+        padding: 0 10px;
+    }
+}
+
+/* Efectos adicionales para hacer más romántico */
+.container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 105, 180, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
